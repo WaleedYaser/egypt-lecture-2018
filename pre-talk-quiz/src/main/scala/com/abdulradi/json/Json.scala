@@ -16,11 +16,12 @@ object JsonSerialisation {
     * Converts Json instance to it's string representation
     */
   def serialise(json: Json): String = json match {
-    case JsonNull => "null"
-    case JsonString(value) => ???
-    case JsonNumber(value) => value.toString
-    case JsonBoolean(value) => ???
-    case JsonArray(values) => values.map(v => serialise(v)).mkString("[", ",", "]")
-    case JsonObject(values) => ???
+    case JsonNull => "null"                                                                 // passed
+    case JsonString(value) => "\"" + value.toString + "\""                                  // passed
+    case JsonNumber(value) => value.toString                                                // passed
+    case JsonBoolean(value) => value.toString                                               // passed
+    case JsonArray(values) => values.map(v => serialise(v)).mkString("[", ",", "]")         // passed
+    case JsonObject(values) => values.map(v => "\"" + v._1.toString + "\"" + ":"
+                                                + serialise(v._2)).mkString("{", ",", "}")  // passed
   }
 }
